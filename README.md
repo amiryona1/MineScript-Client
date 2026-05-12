@@ -1,63 +1,29 @@
 # MineScript Client
 
-MineScript Client is a lightweight modular Minecraft client built using MineScript and PyJinn.
+MineScript Client is a hack client built with MineScript and PyJinn.
 
-The project is designed to be simple to edit, easy to expand, and useful for learning how client-side Minecraft modules work.
+## To Run Do ```\hack```
 
----
+## Usage
 
-# Features
+Modules are stored inside `hacks.py`.
 
-* Aim Assist
-* TriggerBot / Auto Hit
-* Hit Direction manipulation
-* Bridge Assist / Ninja Bridge
-* Movement utilities
-* Modular system
-* Python-style scripting
-* Easy feature creation
+To enable or disable a module, press its keybind or change its value inside `inputs.py`.
 
----
+Default keybinds:
 
-# Requirements
+* G → Aimbot
+* V → Auto Hit
+* C → Scaffold
+* B → Hit Dir (make the opponent take kb to the right instead of left)
+* R → Aim Assist
 
-* MineScript
-* PyJinn support
-* Minecraft 1.21+
+When a module is enabled, the client automatically runs its function from `hacks.py`.
 
----
-
-# How It Works
-
-Each module is its own function.
-
-Example:
+Example module:
 
 ```python
-def aim_assist():
-    pass
-```
-
-The main loop simply calls enabled modules repeatedly.
-
-Example:
-
-```python
-aim_assist()
-auto_hit()
-scaffold()
-```
-
-This makes editing and creating modules extremely easy.
-
----
-
-# Creating Modules
-
-## 1. Create a function
-
-```python
-def example_module():
+def example():
 
     if not inputs.example_enabled:
         return
@@ -65,77 +31,16 @@ def example_module():
     print("enabled")
 ```
 
----
+To create your own module:
 
-## 2. Add a toggle
+1. Create a function in `hacks.py`
+2. Add a toggle in `inputs.py`
+3. Call the function in the main script
 
-In `inputs.py`:
+## Vulcan Detection
 
-```python
-example_enabled = False
-```
-
----
-
-## 3. Call the module
-
-Inside your main loop:
-
-```python
-example_module()
-```
-
----
-
-# Keybind System
-
-Most modules use booleans inside `inputs.py`.
-
-Example:
-
-```python
-aim_assist_enabled = True
-scaffold_enabled = False
-```
-
-You can connect these to your own GUI or keybind handler.
-
----
-
-# Example Module
-
-```python
-def auto_jump():
-
-    if not inputs.auto_jump_enabled:
-        return
-
-    if mc.player.onGround():
-
-        mc.player.jumpFromGround()
-```
-
----
-
-# Design Goals
-
-MineScript Client focuses on:
-
-* simplicity
-* modularity
-* fast testing
-* learning
-* customization
-
-The codebase is intentionally easy to modify.
-
----
-
-# Notes
-
-Some advanced features may require:
-
-* packet handling
-* JavaClass access
-* MineScript internals
-* PyJinn integration
+- G → Aimbot gets flagged by Vulcan
+- V → Auto Hit usually does not get flagged by Vulcan
+- C → Scaffold rarely gets flagged by Vulcan
+- B → Hit Dir (makes opponents take knockback to the right instead of forwards) almost never gets flagged by Vulcan
+- R → Aim Assist has not been flagged by Vulcan
