@@ -1,0 +1,47 @@
+#!python
+
+from minescript import *
+
+import hacks
+import inputs
+
+inputs.init()
+
+
+def on_tick(event):
+
+    try:
+        hacks.aimbot()
+    except Exception as e:
+        echo("aimbot failed")
+        echo(str(e))
+
+    try:
+        hacks.auto_hit()
+    except Exception as e:
+        echo("auto_hit failed")
+        echo(str(e))
+
+    try:
+        hacks.hit_dir()
+    except Exception as e:
+        echo("Hit Dir failed")
+        echo(str(e))
+
+    try:
+        hacks.aim_assist()
+    except Exception as e:
+        echo("Aim Assist failed")
+        echo(str(e))
+
+
+def on_render(event):
+    try:
+        hacks.scaffold()
+    except Exception as e:
+        echo(str(e))
+
+
+add_event_listener("tick", on_tick)
+add_event_listener("render", on_render)
+echo("Loaded")
